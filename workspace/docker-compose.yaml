@@ -1,0 +1,15 @@
+version: "3"
+services:
+  anaconda:
+    container_name: anaconda
+    image: continuumio/anaconda3
+    volumes:
+      - ./data:/notebooks
+    ports:
+      - '8888:8888'
+    # 토큰, 비밀번호를 해제해 뒀다. 보안상 좋지않지만 귀찮아서 해제함
+    command:
+        - /bin/bash
+        - -c
+        - |
+          jupyter notebook --notebook-dir=/notebooks --ip='*' --port=8888 --NotebookApp.token='' --NotebookApp.password='' --no-browser --allow-root
